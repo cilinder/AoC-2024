@@ -8,7 +8,7 @@ fn is_decreasing(x: i32, y: i32) -> bool {
     (y - x) >= -3 && (y - x) <= -1
 }
 
-fn check_sequence(report: &[i32]) -> bool {
+fn check_sequence(report: &Vec<i32>) -> bool {
     let diffs: Vec<_> = report.windows(2).map(|v| v[1] - v[0]).collect();
     diffs.iter().all(|x| *x >= 1 && *x <= 3) || diffs.iter().all(|x| *x <= -1 && *x >= -3)
 }
@@ -43,11 +43,12 @@ pub fn run() {
         if check_sequence(&report) {
             count_safe += 1;
         }
-
-        let increasing = count_strikes(&report, is_increasing);
-        let decreasing = count_strikes(&report, is_decreasing);
-        if increasing <= 1 || decreasing <= 1 || check_sequence(&report[1..]) {
-            count_safe_2 += 1;
+        let strikes = 0;
+        for i in 0..report.len() {
+            if check_sequence(&[&report[..i], &report[i+1..]].concat()) {
+                count_safe_2 += 1;
+                break;
+            }
         }
     }
     println!("Part 1: {count_safe}");
