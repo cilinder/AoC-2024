@@ -223,7 +223,7 @@ fn count_distinct(grid: &Grid, path: Vec<State>) -> u32 {
     let n = grid[0].len();
     let mut visited: Vec<u32> = vec![0; m * n];
     for state in path {
-        visited[state.x + state.y * m] = 1;
+        visited[state.x + state.y * n] = 1;
     }
     visited.iter().sum()
 }
