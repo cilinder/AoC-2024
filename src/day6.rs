@@ -208,7 +208,7 @@ fn find_possible_obstacle_locations(grid: &mut Grid, start_state: State) -> u32 
     let n = grid[0].len();
     let mut counted: Vec<u32> = vec![0; m * n];
     for i in 1..patrol_path.len() {
-        let State { x: x, y: y, dir: dir } = &patrol_path[i];
+        let State { x, y, dir: _ } = &patrol_path[i];
         grid[*y][*x] = Tile::Obstacle;
         if check_if_loop(&grid, &start_state) {
             counted[*x + n * *y] = 1;
