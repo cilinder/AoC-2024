@@ -20,7 +20,6 @@ impl Map {
     fn get(&self, loc: Loc) -> usize {
         return self.map[loc.y][loc.x];
     }
-
 }
 
 fn check_move(topographic_map: &Map, position: Loc, direction: Direction) -> bool {
